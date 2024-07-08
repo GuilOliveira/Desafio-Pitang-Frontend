@@ -1,0 +1,27 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+.app-header{
+    background-color:ghostwhite;
+}
+
+.text-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 15px;
+    min-width: 100px;
+    height: 100%;
+    margin: 10px;
+    cursor: pointer;
+    border: none;
+    
+    
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Transição suave */
+}
+
+.text-button:hover {
+    background-color: #e0eaff; /* Cor ao passar o mouse */
+}
+
