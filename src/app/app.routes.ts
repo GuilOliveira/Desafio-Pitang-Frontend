@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
-import { AppointmentRegisterComponent } from './pages/appointment-register/appointment-register.component';
 import { AppointmentSearchComponent } from './pages/appointment-search/appointment-search.component';
+import { AppointmentScheduleComponent } from './pages/appointment-schedule/appointment-schedule.component';
 
 
 export const routes: Routes = [
@@ -14,7 +14,7 @@ export const routes: Routes = [
     component: AppointmentSearchComponent
   },
   {
-    path: 'cadastro',
-    component: AppointmentRegisterComponent
+    path: 'agendamento',
+    component: AppointmentScheduleComponent
   },
   ];
