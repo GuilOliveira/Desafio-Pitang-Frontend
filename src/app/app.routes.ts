@@ -1,7 +1,8 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
-import { AppointmentsComponent } from './pages/appointments/appointments.component';
-import { RegisterComponent } from './pages/register/register.component';
+import { AppointmentRegisterComponent } from './pages/appointment-register/appointment-register.component';
+import { AppointmentSearchComponent } from './pages/appointment-search/appointment-search.component';
+
 
 export const routes: Routes = [
   {
@@ -10,10 +11,10 @@ export const routes: Routes = [
   },
   {
     path: 'consulta',
-    component: AppointmentsComponent
+    component: AppointmentSearchComponent
   },
   {
     path: 'cadastro',
-    component: RegisterComponent
+    component: AppointmentRegisterComponent
   },
   ];
