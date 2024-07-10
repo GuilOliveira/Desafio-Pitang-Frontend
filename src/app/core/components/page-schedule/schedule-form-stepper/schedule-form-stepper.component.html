@@ -1,0 +1,59 @@
+<form [formGroup]="ScheduleFormGroup">
+  <mat-stepper orientation="vertical" linear>
+    <mat-step [stepControl]="firstStepGroup">
+      <ng-template matStepLabel>Detalhes do Paciente</ng-template>
+      <div formGroupName="firstStep">
+        <div>
+          <mat-form-field>
+            <mat-label>Nome do Paciente</mat-label>
+            <input matInput placeholder="Nome do Paciente" formControlName="name" required>
+          </mat-form-field>
+        </div>
+        <div>
+          <app-form-date-picker 
+            [defaultMessage]="'Data de nascimento'" 
+            formControlName="birthDate" 
+            [formGroup]="firstStepGroup"/>  
+        </div>
+      </div>
+      <div>
+        <button mat-button matStepperNext type="button">Próximo</button>
+      </div>
+    </mat-step>
+
+    <mat-step [stepControl]="secondStepGroup">
+      <ng-template matStepLabel>Detalhes da Consulta</ng-template>
+      <div formGroupName="secondStep">
+        <div>
+          <app-form-date-picker 
+            [defaultMessage]="'Data da consulta'" 
+            formControlName="scheduleDate" 
+            [formGroup]="secondStepGroup"/>  
+        </div>
+        <div>
+          <mat-form-field>
+            <mat-label>Horário</mat-label>
+            <mat-select formControlName="scheduleTime">
+              @for (timeOption of ValidTimeOptions; track timeOption) {
+                <mat-option [value]="timeOption">{{timeOption}}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div>
+        <button mat-button matStepperPrevious type="button">Voltar</button>
+        <button mat-button matStepperNext type="button">Próximo</button>
+      </div>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <p>You are now done.</p>
+      <div>
+        <button mat-button matStepperPrevious type="button">Back</button>
+        <button mat-button (click)="submitForm()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</form>
