@@ -1,0 +1,6 @@
+@if (Appointments$ | async; as appointments) {
+    <app-appointment-expansion-panel [AllAppointments]="appointments"/>
+}
+@else {
+    <app-appointments-not-found-message/>
+}

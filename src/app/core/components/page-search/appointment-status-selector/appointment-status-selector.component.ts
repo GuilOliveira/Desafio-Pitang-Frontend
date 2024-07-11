@@ -10,5 +10,11 @@ import {MatFormFieldModule} from '@angular/material/form-field';
   styleUrl: './appointment-status-selector.component.scss'
 })
 export class AppointmentStatusSelectorComponent {
-  selected = 'waiting';
+  @Input()
+  AppointmentStatus!: string
+  SelectedValue: string = 'Waiting';
+
+  ngOnInit(): void {
+      this.SelectedValue = this.AppointmentStatus
+  }
 }
