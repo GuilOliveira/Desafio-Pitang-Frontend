@@ -1,6 +1,6 @@
-@if (Appointments$ | async; as appointments) {
-    <app-appointment-expansion-panel [AllAppointments]="appointments"/>
+@if (appointments$ | async; as appointments) {
+    <app-appointment-expansion-panel [allAppointments]="appointments"/>
 }
 @else {
-    <app-appointments-not-found-message/>
+    <app-appointments-not-found/>
 }

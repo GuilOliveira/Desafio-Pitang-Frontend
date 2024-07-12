@@ -1,4 +1,4 @@
-<form [formGroup]="ScheduleFormGroup">
+<form [formGroup]="scheduleFormGroup">
   <mat-stepper orientation="vertical" linear>
     <mat-step [stepControl]="firstStepGroup">
       <ng-template matStepLabel>Detalhes do Paciente</ng-template>
@@ -34,7 +34,7 @@
           <mat-form-field>
             <mat-label>Horário</mat-label>
             <mat-select formControlName="scheduleTime">
-              @for (timeOption of ValidTimeOptions; track timeOption) {
+              @for (timeOption of validTimeOptions; track timeOption) {
                 <mat-option [value]="timeOption">{{timeOption}}</mat-option>
               }
             </mat-select>

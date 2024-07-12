@@ -13,7 +13,7 @@ import { DatePipe } from '@angular/common';
 })
 export class AppointmentsTableComponent {
   @Input()
-  Appointments: BasicAppointmentModel[] = [];
+  appointments: BasicAppointmentModel[] = [];
 
   displayedColumns: string[] = ['date', 'time', 'name', 'status'];
 }
