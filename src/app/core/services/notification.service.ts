@@ -5,7 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class NotificationService {
   private snackBar = inject(MatSnackBar);
-  showError(message: string) {
+  showMessage(message: string) {
     this.snackBar.open(message, 'Fechar', {
       duration: 5000,
       horizontalPosition: 'center',
@@ -13,7 +13,7 @@ export class NotificationService {
       panelClass: ['error-snackbar'],
     });
   }
-  hideError() {
+  hideMessage() {
     this.snackBar.dismiss();
   }
 }

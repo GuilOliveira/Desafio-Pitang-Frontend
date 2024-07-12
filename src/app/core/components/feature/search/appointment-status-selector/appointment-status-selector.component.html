@@ -1,5 +1,5 @@
 <mat-form-field>
-    <mat-select [(value)]="selectedValue">
+    <mat-select [(value)]="appointmentStatus" (selectionChange)="onStatusChange()">
       <mat-option value="Waiting">Em espera</mat-option>
       <mat-option value="Accomplished">Finalizado</mat-option>
     </mat-select>
