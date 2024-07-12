@@ -1,6 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, inject, Input } from '@angular/core';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { AppointmentService } from '../../../../services/appointment.service';
+import { AppointmentStatusUpdateModel } from '../../../../models/appointment-status-update-model';
 
 @Component({
   selector: 'app-appointment-status-selector',
@@ -10,11 +12,13 @@ import {MatFormFieldModule} from '@angular/material/form-field';
   styleUrl: './appointment-status-selector.component.scss'
 })
 export class AppointmentStatusSelectorComponent {
-  @Input()
-  appointmentStatus!: string
-  selectedValue: string = 'Waiting';
+private _appointmentService = inject(AppointmentService)
 
-  ngOnInit(): void {
-      this.selectedValue = this.appointmentStatus
+  @Input() appointmentStatus!: string;
+  @Input() appointmentId!: number;
+  
+  onStatusChange(): void {
+    const statusModel: AppointmentStatusUpdateModel = {Id: this.appointmentId, Status: this.appointmentStatus}
+    this._appointmentService.updateAppointment(statusModel)
   }
 }

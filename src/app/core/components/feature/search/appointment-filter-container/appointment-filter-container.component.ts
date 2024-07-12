@@ -52,7 +52,7 @@ export class AppointmentFilterContainerComponent {
 
   checkValid(startDate:string, endDate:string): boolean {
     if(isNaN(Date.parse(startDate)) && isNaN(Date.parse(endDate))){
-      this._notificationService.showError("A data inserida deve ser válida.");
+      this._notificationService.showMessage("A data inserida deve ser válida.");
       return false;
     }
     return true
@@ -60,7 +60,7 @@ export class AppointmentFilterContainerComponent {
 
   checkOrdered(startDate:string, endDate:string): boolean {
     if(startDate > endDate){
-      this._notificationService.showError("A data inicial deve ser menor ou igual à data final.");
+      this._notificationService.showMessage("A data inicial deve ser menor ou igual à data final.");
       return false;
     }
     return true;
