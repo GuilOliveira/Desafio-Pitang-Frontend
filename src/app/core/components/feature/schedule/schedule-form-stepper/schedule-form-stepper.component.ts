@@ -4,8 +4,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatButtonModule } from '@angular/material/button';
-import { FormDatePickerComponent } from '../../form-date-picker/form-date-picker.component';
 import {MatSelectModule} from '@angular/material/select';
+import { FormDatePickerComponent } from '../../../shared/form-date-picker/form-date-picker.component';
 
 @Component({
   selector: 'app-schedule-form-stepper',
@@ -17,8 +17,8 @@ import {MatSelectModule} from '@angular/material/select';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    FormDatePickerComponent,
-    MatSelectModule
+    MatSelectModule,
+    FormDatePickerComponent
     ],
   templateUrl: './schedule-form-stepper.component.html',
   styleUrls: ['./schedule-form-stepper.component.scss']

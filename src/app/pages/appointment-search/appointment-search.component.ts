@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AppointmentTabsComponent } from '../../core/components/page-search/appointment-tabs/appointment-tabs.component';
+import { AppointmentTabsComponent } from '../../core/components/feature/search/appointment-tabs/appointment-tabs.component';
 
 @Component({
   selector: 'app-appointment-search',
