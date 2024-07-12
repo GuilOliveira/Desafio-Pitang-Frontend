@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ScheduleFormStepperComponent } from '../../core/components/page-schedule/schedule-form-stepper/schedule-form-stepper.component';
+import { ScheduleFormStepperComponent } from '../../core/components/feature/schedule/schedule-form-stepper/schedule-form-stepper.component';
 
 @Component({
   selector: 'app-appointment-schedule',

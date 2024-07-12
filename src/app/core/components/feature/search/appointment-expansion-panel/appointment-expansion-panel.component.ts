@@ -1,13 +1,13 @@
 import { Component, Input } from '@angular/core';
-import {MatExpansionModule} from '@angular/material/expansion';
-import { AppointmentsTableComponent } from '../appointment-table/appointments-table.component';
-import { BasicAppointmentModel } from '../../../models/basic-appointment-model';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { DatePipe } from '@angular/common';
+import { BasicAppointmentModel } from '../../../../models/basic-appointment-model';
+import { AppointmentsTableComponent } from '../appointment-table/appointments-table.component';
 
 @Component({
   selector: 'app-appointment-expansion-panel',
   standalone: true,
-  imports: [MatExpansionModule, AppointmentsTableComponent, DatePipe],
+  imports: [MatExpansionModule, DatePipe, AppointmentsTableComponent],
   templateUrl: './appointment-expansion-panel.component.html',
   styleUrl: './appointment-expansion-panel.component.scss'
 })

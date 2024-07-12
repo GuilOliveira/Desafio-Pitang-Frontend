@@ -6,12 +6,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AppointmentExpansionPanelComponent } from '../appointment-expansion-panel/appointment-expansion-panel.component';
 import { AsyncPipe } from '@angular/common';
-import { NotificationService } from '../../../services/notification.service';
-import { AppointmentService } from '../../../services/appointment.service';
+import { NotificationService } from '../../../../services/notification.service';
+import { AppointmentService } from '../../../../services/appointment.service';
 import { Observable } from 'rxjs';
-import { BasicAppointmentModel } from '../../../models/basic-appointment-model';
+import { BasicAppointmentModel } from '../../../../models/basic-appointment-model';
 import { provideNativeDateAdapter } from '@angular/material/core';
-import { AppointmentsNotFoundComponent } from '../../appointments-not-found/appointments-not-found.component';
+import { AppointmentsNotFoundComponent } from '../../../shared/appointments-not-found/appointments-not-found.component';
 
 @Component({
   selector: 'app-appointment-filter-container',

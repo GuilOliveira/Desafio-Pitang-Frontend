@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
-import { AppointmentService } from '../../../services/appointment.service';
 import { Observable } from 'rxjs';
-import { BasicAppointmentModel } from '../../../models/basic-appointment-model';
 import { AsyncPipe } from '@angular/common';
 import { AppointmentExpansionPanelComponent } from '../appointment-expansion-panel/appointment-expansion-panel.component';
-import { AppointmentsNotFoundComponent } from "../../appointments-not-found/appointments-not-found.component";
+import { AppointmentsNotFoundComponent } from '../../../shared/appointments-not-found/appointments-not-found.component';
+import { AppointmentService } from '../../../../services/appointment.service';
+import { BasicAppointmentModel } from '../../../../models/basic-appointment-model';
 
 @Component({
   selector: 'app-all-appointments-container',

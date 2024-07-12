@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { HeaderComponent } from './core/components/header/header.component';
+import { HeaderComponent } from './core/components/shared/header/header.component';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 @Component({
