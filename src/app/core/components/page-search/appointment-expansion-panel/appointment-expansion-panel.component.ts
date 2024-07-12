@@ -13,5 +13,5 @@ import { DatePipe } from '@angular/common';
 })
 export class AppointmentExpansionPanelComponent {
   @Input()
-  AllAppointments: BasicAppointmentModel[][] = []
+  allAppointments: BasicAppointmentModel[][] = []
 }

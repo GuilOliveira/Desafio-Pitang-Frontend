@@ -1,4 +1,19 @@
 <mat-toolbar class="appointment-filter-container">
     <span>Filtre as datas desejadas:</span>
-    <app-appointment-date-range/>
+    <mat-form-field class="date-picker">
+      <mat-label>Insira o intervalo desejado</mat-label>
+      <mat-date-range-input [formGroup]="searchForm" [rangePicker]="picker">
+        <input matStartDate formControlName="startDate" placeholder="Data inicial">
+        <input matEndDate formControlName="endDate" placeholder="Data final">
+      </mat-date-range-input>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+    </mat-form-field>
+    <button mat-raised-button (click)="submit()">Buscar</button>
 </mat-toolbar>
+
+  @if (appointments$ | async; as allAppointments) {
+    <app-appointment-expansion-panel [allAppointments]="allAppointments"/>
+  }@else {
+    <app-appointments-not-found/>
+  }

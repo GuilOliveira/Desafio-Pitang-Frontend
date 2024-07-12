@@ -11,10 +11,10 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 })
 export class AppointmentStatusSelectorComponent {
   @Input()
-  AppointmentStatus!: string
-  SelectedValue: string = 'Waiting';
+  appointmentStatus!: string
+  selectedValue: string = 'Waiting';
 
   ngOnInit(): void {
-      this.SelectedValue = this.AppointmentStatus
+      this.selectedValue = this.appointmentStatus
   }
 }
