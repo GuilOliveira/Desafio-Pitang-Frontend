@@ -9,7 +9,7 @@ import { AsyncPipe } from '@angular/common';
 import { NotificationService } from '../../../../services/notification.service';
 import { AppointmentService } from '../../../../services/appointment.service';
 import { Observable } from 'rxjs';
-import { BasicAppointmentModel } from '../../../../models/basic-appointment-model';
+import { AppointmentModel } from '../../../../models/appointment-model';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { AppointmentsNotFoundComponent } from '../../../shared/appointments-not-found/appointments-not-found.component';
 
@@ -34,7 +34,7 @@ export class AppointmentFilterContainerComponent {
   private _notificationService = inject(NotificationService)
   private _appointmentService = inject(AppointmentService)
 
-  appointments$!: Observable<BasicAppointmentModel[][]>;
+  appointments$!: Observable<AppointmentModel[][]>;
   searchForm: FormGroup;
 
   constructor(private fb: FormBuilder) {

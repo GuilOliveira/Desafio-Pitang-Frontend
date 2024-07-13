@@ -1,5 +1,5 @@
 <form [formGroup]="scheduleFormGroup">
-  <mat-stepper orientation="vertical" linear>
+  <mat-stepper #stepper orientation="vertical" linear>
     <mat-step [stepControl]="firstStepGroup">
       <ng-template matStepLabel>Detalhes do Paciente</ng-template>
       <div formGroupName="firstStep">
@@ -43,16 +43,7 @@
       </div>
       <div>
         <button mat-button matStepperPrevious type="button">Voltar</button>
-        <button mat-button matStepperNext type="button">Próximo</button>
-      </div>
-    </mat-step>
-
-    <mat-step>
-      <ng-template matStepLabel>Done</ng-template>
-      <p>You are now done.</p>
-      <div>
-        <button mat-button matStepperPrevious type="button">Back</button>
-        <button mat-button (click)="submitForm()">Reset</button>
+        <button mat-button [disabled]="!secondStepGroup.valid"  (click)="submitForm(stepper)">Enviar</button>
       </div>
     </mat-step>
   </mat-stepper>

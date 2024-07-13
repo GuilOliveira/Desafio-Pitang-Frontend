@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { BehaviorSubject, Observable, take } from 'rxjs';
-import { BasicAppointmentModel } from '../models/basic-appointment-model';
+import { BehaviorSubject, catchError, Observable, Subject, take, tap } from 'rxjs';
+import { AppointmentModel } from '../models/appointment-model';
 import { AppointmentStatusUpdateModel } from '../models/appointment-status-update-model';
 import { formatDate } from '@angular/common';
 import { HttpResponse } from '@angular/common/http';
@@ -17,27 +17,38 @@ export class AppointmentService {
   private _notificationService = inject(NotificationService)
   private _apiUrl: string = "https://localhost:7136/api/Appointment";
 
-  public getAllAppointments(): Observable<BasicAppointmentModel[][]> {
-    const endPoint: string = "/GetAll"
-    return this._http.get<BasicAppointmentModel[][]>(this._apiUrl+endPoint);
+  private updateResult$ = new Subject<boolean>();
+
+  public getAllAppointments(): Observable<AppointmentModel[][]> {
+    const endPoint: string = "/GetAll";
+    return this._http.get<AppointmentModel[][]>(this._apiUrl+endPoint);
   }
 
-  public getFilteredAppointments(initialDate: Date, finalDate: Date): Observable<BasicAppointmentModel[][]> {
+  public getFilteredAppointments(initialDate: Date, finalDate: Date): Observable<AppointmentModel[][]> {
     const endPoint: string = "/GetByDate"
     const initialDateFiltered: string = formatDate(initialDate, 'yyyy-MM-dd', 'en-US');
     const finalDateFiltered: string = formatDate(finalDate, 'yyyy-MM-dd', 'en-US');
-    return this._http.get<BasicAppointmentModel[][]>(this._apiUrl+endPoint+
+    return this._http.get<AppointmentModel[][]>(this._apiUrl+endPoint+
       `?initialDate=${initialDateFiltered}&finalDate=${finalDateFiltered}`);
   }
 
-  public updateAppointment(statusModel: AppointmentStatusUpdateModel):void{
+  public updateAppointment(statusModel: AppointmentStatusUpdateModel):Observable<boolean>{
     const endPoint: string = "/Update/Status"
     
-    this._http.patch<BasicAppointmentModel>(this._apiUrl+endPoint, statusModel, { observe: 'response' }).pipe(take(1))
-    .subscribe((response: HttpResponse<BasicAppointmentModel>) => {
-      this._notificationService.showMessage("O status do agendamento foi mudado com sucesso.")
-    },error =>{
-      this._notificationService.showMessage("Houve um erro ao mudar o status do agendamento")
-    })
+    this._http.patch<AppointmentModel>(this._apiUrl+endPoint, statusModel, { observe: 'response' })
+    .pipe(take(1),
+      tap({
+        next: (response: HttpResponse<AppointmentModel>) =>{
+          if(response.status==200){
+            this.updateResult$.next(true)
+          }else{
+            this.updateResult$.next(false)
+          }
+        },error: (error) =>{
+          this.updateResult$.next(false)
+        }
+      })).subscribe()
+      
+      return this.updateResult$.asObservable()
   }
 }
