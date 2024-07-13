@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { DatePipe } from '@angular/common';
-import { BasicAppointmentModel } from '../../../../models/basic-appointment-model';
+import { AppointmentModel } from '../../../../models/appointment-model';
 import { AppointmentsTableComponent } from '../appointment-table/appointments-table.component';
 
 @Component({
@@ -13,5 +13,5 @@ import { AppointmentsTableComponent } from '../appointment-table/appointments-ta
 })
 export class AppointmentExpansionPanelComponent {
   @Input()
-  allAppointments: BasicAppointmentModel[][] = []
+  allAppointments: AppointmentModel[][] = []
 }

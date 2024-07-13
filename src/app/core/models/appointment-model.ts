@@ -1,4 +1,4 @@
-export interface BasicAppointmentModel {
+export interface AppointmentModel {
     id: number;
     date: Date;
     time: string; 

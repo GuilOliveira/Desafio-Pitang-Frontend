@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { AppointmentStatusSelectorComponent } from '../appointment-status-selector/appointment-status-selector.component';
-import { BasicAppointmentModel } from '../../../../models/basic-appointment-model';
+import { AppointmentModel } from '../../../../models/appointment-model';
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -12,7 +12,7 @@ import { DatePipe } from '@angular/common';
   styleUrl: './appointments-table.component.scss'
 })
 export class AppointmentsTableComponent {
-  @Input() appointments: BasicAppointmentModel[] = [];
+  @Input() appointments: AppointmentModel[] = [];
 
   displayedColumns: string[] = ['date', 'time', 'name', 'status'];
 }
