@@ -40,15 +40,17 @@ export class AppointmentService {
       tap({
         next: (response: HttpResponse<AppointmentModel>) =>{
           if(response.status==200){
+            this._notificationService.showMessage("O status do agendamento foi mudado com sucesso.")
             this.updateResult$.next(true)
           }else{
+            this._notificationService.showMessage("Houve um erro ao mudar o status do agendamento");
             this.updateResult$.next(false)
           }
         },error: (error) =>{
+          this._notificationService.showMessage("Houve um erro ao mudar o status do agendamento");
           this.updateResult$.next(false)
         }
       })).subscribe()
-      
       return this.updateResult$.asObservable()
   }
 }

@@ -31,7 +31,7 @@ import { take } from 'rxjs';
 })
 export class ScheduleFormStepperComponent {
   private _schedulingService = inject(SchedulingService)
-
+  private isOnRequest: boolean = false
 
   scheduleFormGroup: FormGroup;
   validTimeOptions: string[] = ["05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00"];
@@ -73,6 +73,9 @@ export class ScheduleFormStepperComponent {
 
   submitForm(stepper: MatStepper){
     if(!this.scheduleFormGroup.valid) return
+    if(this.isOnRequest) return
+
+    this.isOnRequest = true
 
     const birthDate = this.scheduleFormGroup.get('firstStep')!.value.birthDate
     const scheduleDate = this.scheduleFormGroup.get('secondStep')!.value.scheduleDate
@@ -88,8 +91,10 @@ export class ScheduleFormStepperComponent {
         if(isSubmited){
           stepper.reset();
           this.scheduleFormGroup.reset();
+          this.isOnRequest = false
         }else{
           this.clearSecondStep()
+          this.isOnRequest = false
         }
       }
     )
