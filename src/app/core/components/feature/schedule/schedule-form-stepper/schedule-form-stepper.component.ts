@@ -50,10 +50,11 @@ export class ScheduleFormStepperComponent {
   }
 
   ngOnInit(): void {
+    this.scheduleFormGroup.setValue(this._schedulingService.getScheduleCache());
+    
     this.scheduleFormGroup.valueChanges.subscribe(schedule => {
       this._schedulingService.updateSchedulingCache(schedule);
     });
-    this.scheduleFormGroup.setValue(this._schedulingService.getScheduleCache())
   }
 
   clearSecondStep():void{

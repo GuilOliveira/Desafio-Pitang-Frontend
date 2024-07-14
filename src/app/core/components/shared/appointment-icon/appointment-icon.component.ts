@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { AppointmentIconNotificationService } from '../../../services/notification/appointment-icon-notification.service';
+import { AppointmentIconNotificationService } from '../../../services/cache/appointment-icon-notification.service';
 import { MatBadgeModule } from '@angular/material/badge';
 import { tap } from 'rxjs';
 
