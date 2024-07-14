@@ -4,11 +4,12 @@ import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/
 
 import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { loadingInterceptor } from './core/interceptors/loading.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }), 
               provideRouter(routes), 
               provideAnimationsAsync(),
-              provideHttpClient(withFetch()),
+              provideHttpClient(withInterceptors([loadingInterceptor])),
             ]
 };
