@@ -6,8 +6,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AppointmentExpansionPanelComponent } from '../appointment-expansion-panel/appointment-expansion-panel.component';
 import { AsyncPipe } from '@angular/common';
-import { NotificationService } from '../../../../services/notification.service';
-import { AppointmentService } from '../../../../services/appointment.service';
+import { SnackbarMessageService } from '../../../../services/notification/snackbar-message.service';
+import { AppointmentService } from '../../../../services/feature/appointment.service';
 import { Observable } from 'rxjs';
 import { AppointmentModel } from '../../../../models/appointment-model';
 import { provideNativeDateAdapter } from '@angular/material/core';
@@ -31,7 +31,7 @@ import { AppointmentsNotFoundComponent } from '../../../shared/appointments-not-
 })
 
 export class AppointmentFilterContainerComponent {
-  private _notificationService = inject(NotificationService)
+  private _notificationService = inject(SnackbarMessageService)
   private _appointmentService = inject(AppointmentService)
 
   appointments$!: Observable<AppointmentModel[][]>;

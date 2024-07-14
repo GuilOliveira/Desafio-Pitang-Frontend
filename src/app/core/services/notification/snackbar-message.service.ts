@@ -3,7 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 @Injectable({
   providedIn: 'root',
 })
-export class NotificationService {
+export class SnackbarMessageService {
   private snackBar = inject(MatSnackBar);
   showMessage(message: string) {
     this.snackBar.open(message, 'Fechar', {

@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject, catchError, Observable, Subject, take, tap } from 'rxjs';
-import { AppointmentModel } from '../models/appointment-model';
-import { AppointmentStatusUpdateModel } from '../models/appointment-status-update-model';
+import { AppointmentModel } from '../../models/appointment-model';
+import { AppointmentStatusUpdateModel } from '../../models/appointment-status-update-model';
 import { formatDate } from '@angular/common';
 import { HttpResponse } from '@angular/common/http';
-import { NotificationService } from './notification.service';
+import { SnackbarMessageService } from '../notification/snackbar-message.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ export class AppointmentService {
   
   constructor() { }
   private _http = inject(HttpClient);
-  private _notificationService = inject(NotificationService)
+  private _notificationService = inject(SnackbarMessageService)
   private _apiUrl: string = "https://localhost:7136/api/Appointment";
 
   private updateResult$ = new Subject<boolean>();

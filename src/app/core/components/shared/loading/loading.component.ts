@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { LoadingService } from '../../../services/loading.service';
+import { LoadingService } from '../../../services/core/loading.service';
 import { AsyncPipe } from '@angular/common';
 import { MatProgressBar } from '@angular/material/progress-bar';
 
