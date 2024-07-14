@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { AppointmentExpansionPanelComponent } from '../appointment-expansion-panel/appointment-expansion-panel.component';
 import { AppointmentsNotFoundComponent } from '../../../shared/appointments-not-found/appointments-not-found.component';
-import { AppointmentService } from '../../../../services/appointment.service';
+import { AppointmentService } from '../../../../services/feature/appointment.service';
 import { AppointmentModel } from '../../../../models/appointment-model';
 
 @Component({

@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ModalNotificationComponent } from '../components/shared/modal-notification/modal-notification.component';
+import { ModalNotificationComponent } from '../../components/shared/modal-notification/modal-notification.component';
 
 @Injectable({
   providedIn: 'root'
