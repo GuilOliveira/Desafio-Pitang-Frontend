@@ -5,7 +5,8 @@ import { getEmptyScheduleForm, ScheduleFormModel } from '../../models/schedule-f
 import { BehaviorSubject, Observable, Subject, take, tap } from 'rxjs';
 import { AppointmentModel } from '../../models/appointment-model';
 import { ModalNotificationService } from '../notification/modal-notification.service';
-import { AppointmentIconNotificationService } from '../notification/appointment-icon-notification.service';
+import { AppointmentIconNotificationService } from '../cache/appointment-icon-notification.service';
+import { SchedulingFormCacheService } from '../cache/scheduling-form-cache.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,10 +15,11 @@ export class SchedulingService {
   private _http = inject(HttpClient);
   private _modalService = inject(ModalNotificationService)
   private _iconNotification = inject(AppointmentIconNotificationService)
+  private _formCacheService = inject(SchedulingFormCacheService)
   private _apiUrl: string = "https://localhost:7136/api/Scheduling";
 
   private postResult$ = new Subject<boolean>();
-  private schedulingForm$ = new BehaviorSubject<ScheduleFormModel>(getEmptyScheduleForm())
+  private schedulingForm$ = new BehaviorSubject<ScheduleFormModel>(this._formCacheService.get())
 
   postScheduling(scheduling: ScheduleModel):Observable<boolean>{
     const endPoint: string = "/Register";
@@ -46,6 +48,7 @@ export class SchedulingService {
 
   updateSchedulingCache(scheduling: ScheduleFormModel):void{
     this.schedulingForm$.next(scheduling);
+    this._formCacheService.set(scheduling);
   }
 
   getScheduleCache():ScheduleFormModel{

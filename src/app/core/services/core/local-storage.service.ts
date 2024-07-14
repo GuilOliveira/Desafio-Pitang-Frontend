@@ -10,12 +10,13 @@ export class LocalStorageService {
     this._localStorage = window.localStorage;
    }
 
-  set(key: string, value: any): void {
+  set<T>(key: string, value: T): void {
     this._localStorage.setItem(key, JSON.stringify(value));
   }
 
-  get(key: string): any {
-    return this._localStorage.getItem(key);
+  get<T>(key: string): T | null {
+    const value = this._localStorage.getItem(key);
+    return value ? JSON.parse(value) : null;
   }
 
   remove(key: string): void {
