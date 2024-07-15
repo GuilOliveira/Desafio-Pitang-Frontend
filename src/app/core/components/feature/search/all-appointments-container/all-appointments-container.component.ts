@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { AppointmentExpansionPanelComponent } from '../appointment-expansion-panel/appointment-expansion-panel.component';
@@ -13,12 +13,15 @@ import { AppointmentModel } from '../../../../models/appointment-model';
   templateUrl: './all-appointments-container.component.html',
   styleUrl: './all-appointments-container.component.scss'
 })
-export class AllAppointmentsContainerComponent {
+export class AllAppointmentsContainerComponent implements OnInit {
     private _appointmentService = inject(AppointmentService);
-    
     public appointments$!: Observable<AppointmentModel[][]>;
 
     ngOnInit(): void {
+      this.loadAppointments()
+    }
+
+    loadAppointments(): void{
       this.appointments$ = this._appointmentService.getAllAppointments();
     }
 }

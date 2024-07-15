@@ -1,5 +1,4 @@
 <table mat-table [dataSource]="appointments" class="mat-elevation-z8">
-
   <ng-container matColumnDef="date">
     <th mat-header-cell *matHeaderCellDef> Data </th>
     <td mat-cell *matCellDef="let element"> {{element.date | date:"dd/MM/yyyy"}} </td>
@@ -17,8 +16,12 @@
 
   <ng-container matColumnDef="status">
     <th mat-header-cell *matHeaderCellDef> Status </th>
-    <td mat-cell *matCellDef="let element"> <app-appointment-status-selector 
-        [appointmentStatus]="element.status" [appointmentId]="element.id"/> </td>
+    <td mat-cell *matCellDef="let element">
+      <div class="status-container">
+        <app-appointment-status-selector [appointmentStatus]="element.status" [appointmentId]="element.id"></app-appointment-status-selector>
+        <app-delete-appointment-button [id]="element.id" class="delete-button"></app-delete-appointment-button>
+      </div>
+    </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

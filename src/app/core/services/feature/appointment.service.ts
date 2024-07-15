@@ -15,17 +15,19 @@ export class AppointmentService {
   constructor() { }
   private _http = inject(HttpClient);
   private _notificationService = inject(SnackbarMessageService)
-  private _apiUrl: string = "https://localhost:7136/api/Appointment";
+  private _apiUrl = "https://localhost:7136/api/Appointment";
 
   private updateResult$ = new Subject<boolean>();
+  private deletedAppoinment = new BehaviorSubject<number>(0)
+  deletedAppointment$ = this.deletedAppoinment.asObservable()
 
   public getAllAppointments(): Observable<AppointmentModel[][]> {
-    const endPoint: string = "/GetAll";
+    const endPoint = "/GetAll";
     return this._http.get<AppointmentModel[][]>(this._apiUrl+endPoint);
   }
 
   public getFilteredAppointments(initialDate: Date, finalDate: Date): Observable<AppointmentModel[][]> {
-    const endPoint: string = "/GetByDate"
+    const endPoint = "/GetByDate"
     const initialDateFiltered: string = formatDate(initialDate, 'yyyy-MM-dd', 'en-US');
     const finalDateFiltered: string = formatDate(finalDate, 'yyyy-MM-dd', 'en-US');
     return this._http.get<AppointmentModel[][]>(this._apiUrl+endPoint+
@@ -33,7 +35,7 @@ export class AppointmentService {
   }
 
   public updateAppointment(statusModel: AppointmentStatusUpdateModel):Observable<boolean>{
-    const endPoint: string = "/Update/Status"
+    const endPoint = "/Update/Status"
     
     this._http.patch<AppointmentModel>(this._apiUrl+endPoint, statusModel, { observe: 'response' })
     .pipe(take(1),
@@ -52,5 +54,24 @@ export class AppointmentService {
         }
       })).subscribe()
       return this.updateResult$.asObservable()
+  }
+
+  public deleteAppointment(id: number):void{
+    const endPoint = "/Delete";
+    this._http.delete<null>(this._apiUrl+endPoint+`?id=${id}`, {observe: 'response'})
+    .pipe(take(1),
+    tap({
+      next: (response: HttpResponse<null>) =>{
+        if(response.status==204){
+          this.deletedAppoinment.next(id)
+          this._notificationService.showMessage("O agendamento foi excluído com sucesso.")
+        }else{
+          this._notificationService.showMessage("Houve um erro ao excluir o agendamento");
+        }
+      }, error: (error) =>{
+        this._notificationService.showMessage("Houve um erro ao excluir o agendamento");
+      }
+    })
+  ).subscribe()
   }
 }

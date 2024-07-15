@@ -1,4 +1,4 @@
-import { Component, inject, ViewChild } from '@angular/core';
+import { Component, inject, ViewChild, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -29,9 +29,9 @@ import { take } from 'rxjs';
   templateUrl: './schedule-form-stepper.component.html',
   styleUrls: ['./schedule-form-stepper.component.scss']
 })
-export class ScheduleFormStepperComponent {
+export class ScheduleFormStepperComponent implements OnInit {
   private _schedulingService = inject(SchedulingService)
-  private isOnRequest: boolean = false
+  private isOnRequest = false
 
   scheduleFormGroup: FormGroup;
   validTimeOptions: string[] = ["05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00"];

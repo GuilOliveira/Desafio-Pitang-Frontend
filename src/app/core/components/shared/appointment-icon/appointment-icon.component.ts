@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { AppointmentIconNotificationService } from '../../../services/cache/appointment-icon-notification.service';
 import { MatBadgeModule } from '@angular/material/badge';
@@ -11,7 +11,7 @@ import { tap } from 'rxjs';
   templateUrl: './appointment-icon.component.html',
   styleUrl: './appointment-icon.component.scss'
 })
-export class AppointmentIconComponent {
+export class AppointmentIconComponent implements OnInit {
   private _notification = inject(AppointmentIconNotificationService)
   counter!:number
 

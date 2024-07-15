@@ -1,3 +1,17 @@
 table {
     width: 50px;
   }
+
+.status-container{
+  display: flex;
+  align-items: center;
+}
+
+app-delete-appointment-button{
+  padding-bottom: 10px;
+  padding-left: 20px;
+}
+
+app-appointment-status-selector{
+  padding-top: 10px;
+}
