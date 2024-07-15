@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { MatSelectModule} from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { AppointmentService } from '../../../../services/feature/appointment.service';
@@ -12,7 +12,7 @@ import { take } from 'rxjs';
   templateUrl: './appointment-status-selector.component.html',
   styleUrl: './appointment-status-selector.component.scss'
 })
-export class AppointmentStatusSelectorComponent {
+export class AppointmentStatusSelectorComponent implements OnInit {
 private _appointmentService = inject(AppointmentService)
 
   @Input() appointmentStatus!: string;

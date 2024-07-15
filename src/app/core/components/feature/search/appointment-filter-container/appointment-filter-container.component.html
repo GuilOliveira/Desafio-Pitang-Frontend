@@ -11,9 +11,14 @@
     </mat-form-field>
     <button mat-raised-button (click)="submit()">Buscar</button>
 </mat-toolbar>
-
-  @if (appointments$ | async; as allAppointments) {
-    <app-appointment-expansion-panel [allAppointments]="allAppointments"/>
-  }@else {
-    <app-appointments-not-found/>
+@if (appointments$ | async; as appointments) {
+  @if(appointments.length>0){
+      <app-appointment-expansion-panel [allAppointments]="appointments"/>
   }
+  @else {
+      <app-appointments-not-found/>
+  }
+}
+@else {
+  <app-appointments-not-found/>
+}

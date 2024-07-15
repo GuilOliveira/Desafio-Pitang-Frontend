@@ -1,24 +1,24 @@
 import { Component, inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { ModalNotificationService } from '../../../services/notification/modal-notification.service';
-import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  selector: 'app-modal-notification',
+  selector: 'app-modal-error-message',
   standalone: true,
-  imports: [MatDialogModule, MatButtonModule, MatIconModule],
-  templateUrl: './modal-notification.component.html',
-  styleUrl: './modal-notification.component.scss'
+  imports: [MatDialogModule, MatIconModule, MatButtonModule],
+  templateUrl: './modal-error-message.component.html',
+  styleUrl: './modal-error-message.component.scss'
 })
-export class ModalNotificationComponent {
-  private dialogRef = inject(MatDialogRef<ModalNotificationComponent>);
+export class ModalErrorMessageComponent {
+  private dialogRef = inject(MatDialogRef<ModalErrorMessageComponent>);
   private _modalService = inject(ModalNotificationService);
   
   data = inject(MAT_DIALOG_DATA);
 
   close():void{
+    console.log(this.data.messages)
     this.dialogRef.close();
   }
 }

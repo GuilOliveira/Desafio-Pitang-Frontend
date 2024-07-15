@@ -12,24 +12,24 @@ import { Observable } from 'rxjs';
 import { AppointmentModel } from '../../../../models/appointment-model';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { AppointmentsNotFoundComponent } from '../../../shared/appointments-not-found/appointments-not-found.component';
+import { AllAppointmentsContainerComponent } from "../all-appointments-container/all-appointments-container.component";
 
 @Component({
   selector: 'app-appointment-filter-container',
   standalone: true,
   imports: [MatFormFieldModule,
-            MatDatepickerModule,
-            MatButtonModule,
-            ReactiveFormsModule,
-            MatToolbar,
-            AppointmentExpansionPanelComponent,
-            AsyncPipe,
-            AppointmentsNotFoundComponent],
+    MatDatepickerModule,
+    MatButtonModule,
+    ReactiveFormsModule,
+    MatToolbar,
+    AppointmentExpansionPanelComponent,
+    AsyncPipe,
+    AppointmentsNotFoundComponent, 
+    AllAppointmentsContainerComponent],
   templateUrl: './appointment-filter-container.component.html',
   styleUrl: './appointment-filter-container.component.scss',
   providers: [provideNativeDateAdapter()],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-
 export class AppointmentFilterContainerComponent {
   private _notificationService = inject(SnackbarMessageService)
   private _appointmentService = inject(AppointmentService)
@@ -46,10 +46,10 @@ export class AppointmentFilterContainerComponent {
   submit(): void {
     const { startDate, endDate } = this.searchForm.value;
     if (!this.checkValid(startDate, endDate)) return
-    if (!this.checkOrdered(startDate, endDate)) return
+    if (!this.checkOrder(startDate, endDate)) return
     this.appointments$ = this._appointmentService.getFilteredAppointments(startDate, endDate);
   }
-
+  
   checkValid(startDate:string, endDate:string): boolean {
     if(isNaN(Date.parse(startDate)) && isNaN(Date.parse(endDate))){
       this._notificationService.showMessage("A data inserida deve ser válida.");
@@ -58,7 +58,7 @@ export class AppointmentFilterContainerComponent {
     return true
   }
 
-  checkOrdered(startDate:string, endDate:string): boolean {
+  checkOrder(startDate:string, endDate:string): boolean {
     if(startDate > endDate){
       this._notificationService.showMessage("A data inicial deve ser menor ou igual à data final.");
       return false;

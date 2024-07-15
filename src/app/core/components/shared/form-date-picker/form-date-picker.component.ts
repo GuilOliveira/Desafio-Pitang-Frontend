@@ -28,8 +28,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormControl, FormsModule, Reac
   styleUrls: ['./form-date-picker.component.scss']
 })
 export class FormDatePickerComponent implements ControlValueAccessor {
-  @Input() defaultMessage: string = "Escolha uma data";
-  @Input() formControlName: string = "";
+  @Input() defaultMessage = "Escolha uma data";
+  @Input() formControlName = "";
 
   private _onChange: (value: any) => void = () => {};
   private _onTouched: () => void = () => {};
