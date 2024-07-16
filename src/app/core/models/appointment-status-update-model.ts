@@ -1,5 +1,4 @@
 export interface AppointmentStatusUpdateModel {
-    Id: number;
-    Status: string;
-  }
-  
+	Id: number;
+	Status: string;
+}

@@ -1,12 +1,10 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-  selector: 'app-appointments-not-found',
-  standalone: true,
-  imports: [],
-  templateUrl: './appointments-not-found.component.html',
-  styleUrl: './appointments-not-found.component.scss'
+	selector: "app-appointments-not-found",
+	standalone: true,
+	imports: [],
+	templateUrl: "./appointments-not-found.component.html",
+	styleUrl: "./appointments-not-found.component.scss",
 })
-export class AppointmentsNotFoundComponent {
-
-}
+export class AppointmentsNotFoundComponent {}
