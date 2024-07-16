@@ -20,8 +20,4 @@ export class AppointmentsTableComponent {
   @Input() appointments: AppointmentModel[] = [];
 
   displayedColumns: string[] = ['date', 'time', 'name', 'status'];
-
-  trackByAppointment(index: number, appointment: AppointmentModel): number {
-    return appointment.id;
-  }
 }

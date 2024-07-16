@@ -30,10 +30,8 @@ export class AppointmentExpansionPanelComponent implements OnInit, OnDestroy {
   }
 
   handleAppointmentDelete(id: number):void{
-    console.log(this.allAppointments)
     this.allAppointments = this.allAppointments.map(appointmentList =>
       appointmentList.filter(appointment => appointment.id !== id)).
       filter(appointmentList => appointmentList.length > 0);
-    console.log(this.allAppointments)
   }
 }

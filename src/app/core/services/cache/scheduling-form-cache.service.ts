@@ -16,6 +16,4 @@ export class SchedulingFormCacheService {
     const schedule = this._localStorage.get<ScheduleFormModel>("schedule-form");
     return schedule ? schedule : getEmptyScheduleForm();
   }
-
-  constructor() { }
 }

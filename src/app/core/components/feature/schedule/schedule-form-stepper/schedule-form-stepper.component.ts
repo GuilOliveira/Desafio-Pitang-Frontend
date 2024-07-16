@@ -1,15 +1,14 @@
-import { Component, inject, ViewChild, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatStepper, MatStepperModule } from '@angular/material/stepper';
 import { MatButtonModule } from '@angular/material/button';
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 import { FormDatePickerComponent } from '../../../shared/form-date-picker/form-date-picker.component';
 import { SchedulingService } from '../../../../services/feature/scheduling.service';
 import { ScheduleModel } from '../../../../models/schedule-model';
 import { formatDate } from '@angular/common';
-import { ScheduleFormModel, getEmptyScheduleForm } from '../../../../models/schedule-form-model';
 import { take } from 'rxjs';
 
 @Component({

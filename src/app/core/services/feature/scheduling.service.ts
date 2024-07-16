@@ -1,13 +1,14 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { ScheduleModel } from '../../models/schedule-model';
-import { getEmptyScheduleForm, ScheduleFormModel } from '../../models/schedule-form-model';
+import { ScheduleFormModel } from '../../models/schedule-form-model';
 import { BehaviorSubject, Observable, Subject, take, tap } from 'rxjs';
 import { AppointmentModel } from '../../models/appointment-model';
 import { ModalNotificationService } from '../notification/modal-notification.service';
 import { AppointmentIconNotificationService } from '../cache/appointment-icon-notification.service';
 import { SchedulingFormCacheService } from '../cache/scheduling-form-cache.service';
 import { ErrorResponseModel } from '../../models/error-response-model';
+import { env } from '../../environment/env';
 
 @Injectable({
   providedIn: 'root'
@@ -17,10 +18,10 @@ export class SchedulingService {
   private _modalService = inject(ModalNotificationService)
   private _iconNotification = inject(AppointmentIconNotificationService)
   private _formCacheService = inject(SchedulingFormCacheService)
-  private _apiUrl = "https://localhost:7136/api/Scheduling";
+  private _apiUrl = env.apiUrl+"/Scheduling";
 
   private postResult$ = new Subject<boolean>();
-  private schedulingForm$ = new BehaviorSubject<ScheduleFormModel>(this._formCacheService.get())
+  private schedulingForm$ = new BehaviorSubject<ScheduleFormModel>(this._formCacheService.get());
 
   postScheduling(scheduling: ScheduleModel):Observable<boolean>{
     const endPoint = "/Register";
@@ -33,10 +34,6 @@ export class SchedulingService {
           this._modalService.showNotification("Consulta agendada!","Sua consulta foi agendada com sucesso!",false);
           this._iconNotification.add();
         }
-        else{
-          this.postResult$.next(false);
-          this._modalService.showNotification("Ocorreu um erro!","Houve um erro ao tentar agendar sua consulta.",true);
-        }
       },error: (error) =>{
         if(error.status==400){
           const errorResponse = error.error as ErrorResponseModel;
@@ -47,7 +44,7 @@ export class SchedulingService {
     })
     ).subscribe();
 
-    return this.postResult$.asObservable()
+    return this.postResult$.asObservable();
   }
 
   updateSchedulingCache(scheduling: ScheduleFormModel):void{
@@ -58,7 +55,4 @@ export class SchedulingService {
   getScheduleCache():ScheduleFormModel{
     return this.schedulingForm$.getValue();
   }
-
-
-  constructor() {}
 }

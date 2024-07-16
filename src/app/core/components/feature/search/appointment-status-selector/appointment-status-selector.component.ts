@@ -27,11 +27,11 @@ private _appointmentService = inject(AppointmentService)
     const statusModel: AppointmentStatusUpdateModel = {Id: this.appointmentId, Status: this.appointmentStatus}
     this._appointmentService.updateAppointment(statusModel).pipe(take(1)).subscribe(
       statusChanged=>{
-        if(!statusChanged){
-          this.appointmentStatus = this.lastStatus
+        if(statusChanged){
+          this.lastStatus = this.appointmentStatus
         }
         else{
-          this.lastStatus = this.appointmentStatus
+          this.appointmentStatus = this.lastStatus
         }
       })
   }

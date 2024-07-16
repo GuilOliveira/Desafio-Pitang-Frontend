@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { AppointmentService } from '../../../services/feature/appointment.service';
@@ -22,6 +22,6 @@ export class ModalConfirmationComponent {
   }
   delete():void{
     this._appointmentService.deleteAppointment(this.data.id);
-    this.close;
+    this.close();
   }
 }

@@ -11,7 +11,7 @@ export const routes: Routes = [
   },
   {
     path: 'consulta',
-    component: AppointmentSearchComponent
+    component: AppointmentSearchComponent,
   },
   {
     path: 'agendamento',

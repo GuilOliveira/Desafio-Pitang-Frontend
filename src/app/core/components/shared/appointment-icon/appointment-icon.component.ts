@@ -2,7 +2,6 @@ import { Component, inject, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { AppointmentIconNotificationService } from '../../../services/cache/appointment-icon-notification.service';
 import { MatBadgeModule } from '@angular/material/badge';
-import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-appointment-icon',
@@ -12,11 +11,11 @@ import { tap } from 'rxjs';
   styleUrl: './appointment-icon.component.scss'
 })
 export class AppointmentIconComponent implements OnInit {
-  private _notification = inject(AppointmentIconNotificationService)
-  counter!:number
+  private _notification = inject(AppointmentIconNotificationService);
+  counter!:number;
 
   ngOnInit(): void {
-    this._notification.notificationCounter$.subscribe(count=>{ this.counter = count;})
+    this._notification.notificationCounter$.subscribe(count=>{ this.counter = count;});
   }
 
 }

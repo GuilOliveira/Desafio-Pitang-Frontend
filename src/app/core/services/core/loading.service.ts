@@ -18,5 +18,4 @@ export class LoadingService {
     this.totalRequests--;
     this.loading.next(false)
   }
-  constructor() { }
 }

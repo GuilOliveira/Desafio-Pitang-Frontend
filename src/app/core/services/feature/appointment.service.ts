@@ -1,25 +1,25 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { BehaviorSubject, catchError, Observable, Subject, take, tap } from 'rxjs';
+import { Observable, Subject, take, tap } from 'rxjs';
 import { AppointmentModel } from '../../models/appointment-model';
 import { AppointmentStatusUpdateModel } from '../../models/appointment-status-update-model';
 import { formatDate } from '@angular/common';
 import { HttpResponse } from '@angular/common/http';
 import { SnackbarMessageService } from '../notification/snackbar-message.service';
+import { env } from '../../environment/env';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppointmentService {
   
-  constructor() { }
   private _http = inject(HttpClient);
-  private _notificationService = inject(SnackbarMessageService)
-  private _apiUrl = "https://localhost:7136/api/Appointment";
+  private _notificationService = inject(SnackbarMessageService);
+  private _apiUrl = env.apiUrl+"/Appointment";
 
   private updateResult$ = new Subject<boolean>();
-  private deletedAppoinment = new BehaviorSubject<number>(0)
-  deletedAppointment$ = this.deletedAppoinment.asObservable()
+  private deletedAppoinment = new Subject<number>();
+  deletedAppointment$ = this.deletedAppoinment.asObservable();
 
   public getAllAppointments(): Observable<AppointmentModel[][]> {
     const endPoint = "/GetAll";
@@ -42,33 +42,29 @@ export class AppointmentService {
       tap({
         next: (response: HttpResponse<AppointmentModel>) =>{
           if(response.status==200){
-            this._notificationService.showMessage("O status do agendamento foi mudado com sucesso.")
-            this.updateResult$.next(true)
-          }else{
-            this._notificationService.showMessage("Houve um erro ao mudar o status do agendamento");
-            this.updateResult$.next(false)
+            this._notificationService.showMessage("O status do agendamento foi mudado com sucesso.");
+            this.updateResult$.next(true);
           }
-        },error: (error) =>{
+        },error: () =>{
           this._notificationService.showMessage("Houve um erro ao mudar o status do agendamento");
-          this.updateResult$.next(false)
+          this.updateResult$.next(false);
         }
       })).subscribe()
-      return this.updateResult$.asObservable()
+      return this.updateResult$.asObservable();
   }
 
   public deleteAppointment(id: number):void{
     const endPoint = "/Delete";
+
     this._http.delete<null>(this._apiUrl+endPoint+`?id=${id}`, {observe: 'response'})
     .pipe(take(1),
     tap({
       next: (response: HttpResponse<null>) =>{
         if(response.status==204){
-          this.deletedAppoinment.next(id)
-          this._notificationService.showMessage("O agendamento foi excluído com sucesso.")
-        }else{
-          this._notificationService.showMessage("Houve um erro ao excluir o agendamento");
+          this.deletedAppoinment.next(id);
+          this._notificationService.showMessage("O agendamento foi excluído com sucesso.");
         }
-      }, error: (error) =>{
+      }, error: () =>{
         this._notificationService.showMessage("Houve um erro ao excluir o agendamento");
       }
     })

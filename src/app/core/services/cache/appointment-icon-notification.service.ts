@@ -11,8 +11,8 @@ export class AppointmentIconNotificationService {
   notificationCounter$ = this.notificationCounter.asObservable()
   
   get():number{
-    const value = this._localStorage.get<any>("appointmentsMade")
-    return value ? parseInt(value) : 0
+    const value = this._localStorage.get<number | null>("appointmentsMade")
+    return value ? value : 0
   }
 
   add():void{

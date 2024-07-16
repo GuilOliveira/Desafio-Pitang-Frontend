@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Input, forwardRef } from '@angular/
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { provideNativeDateAdapter, DateAdapter } from '@angular/material/core';
+import { provideNativeDateAdapter } from '@angular/material/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -31,7 +31,7 @@ export class FormDatePickerComponent implements ControlValueAccessor {
   @Input() defaultMessage = "Escolha uma data";
   @Input() formControlName = "";
 
-  private _onChange: (value: any) => void = () => {};
+  private _onChange: (value: string) => void = () => {};
   private _onTouched: () => void = () => {};
   control = new FormControl();
 
