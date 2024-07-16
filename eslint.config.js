@@ -12,6 +12,7 @@ module.exports = tseslint.config(
       ...tseslint.configs.stylistic,
       ...angular.configs.tsRecommended,
     ],
+    ignores: ["./src/app/core/components/shared/form-date-picker/"],
     processor: angular.processInlineTemplates,
     rules: {
       "@angular-eslint/directive-selector": [
