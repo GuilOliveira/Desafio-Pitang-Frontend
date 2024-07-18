@@ -7,7 +7,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 			Authorization: `Bearer oi`,
 		},
 	});
-	return next(newReq).pipe(
+	return next(req).pipe(
 		catchError(error => {
 			console.log(error);
 			return throwError(() => error);
