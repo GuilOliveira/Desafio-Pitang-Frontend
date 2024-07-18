@@ -8,7 +8,6 @@ import { ModalNotificationService } from "../notification/modal-notification.ser
 import { AppointmentIconNotificationService } from "../cache/appointment-icon-notification.service";
 import { SchedulingFormCacheService } from "../cache/scheduling-form-cache.service";
 import { ErrorResponseModel } from "../../models/error-response-model";
-import { env } from "../../environment/env";
 
 @Injectable({
 	providedIn: "root",
@@ -18,7 +17,7 @@ export class SchedulingService {
 	private _modalService = inject(ModalNotificationService);
 	private _iconNotification = inject(AppointmentIconNotificationService);
 	private _formCacheService = inject(SchedulingFormCacheService);
-	private _apiUrl = env.apiUrl + "/api/Scheduling";
+	private _apiUrl = "/api/Scheduling";
 
 	private postResult$ = new Subject<boolean>();
 	private schedulingForm$ = new BehaviorSubject<ScheduleFormModel>(this._formCacheService.get());
