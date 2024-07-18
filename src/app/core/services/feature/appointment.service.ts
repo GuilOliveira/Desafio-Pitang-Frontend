@@ -6,7 +6,6 @@ import { AppointmentStatusUpdateModel } from "../../models/appointment-status-up
 import { formatDate } from "@angular/common";
 import { HttpResponse } from "@angular/common/http";
 import { SnackbarMessageService } from "../notification/snackbar-message.service";
-import { env } from "../../environment/env";
 
 @Injectable({
 	providedIn: "root",
@@ -14,7 +13,7 @@ import { env } from "../../environment/env";
 export class AppointmentService {
 	private _http = inject(HttpClient);
 	private _notificationService = inject(SnackbarMessageService);
-	private _apiUrl = env.apiUrl + "/api/Appointment";
+	private _apiUrl = "/api/Appointment";
 
 	private updateResult$ = new Subject<boolean>();
 	private deletedAppoinment = new Subject<number>();
