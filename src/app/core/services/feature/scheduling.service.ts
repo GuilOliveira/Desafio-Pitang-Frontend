@@ -18,13 +18,14 @@ export class SchedulingService {
 	private _modalService = inject(ModalNotificationService);
 	private _iconNotification = inject(AppointmentIconNotificationService);
 	private _formCacheService = inject(SchedulingFormCacheService);
-	private _apiUrl = env.apiUrl + "/Scheduling";
+	private _apiUrl = env.apiUrl + "/api/Scheduling";
 
 	private postResult$ = new Subject<boolean>();
 	private schedulingForm$ = new BehaviorSubject<ScheduleFormModel>(this._formCacheService.get());
 
 	postScheduling(scheduling: ScheduleModel): Observable<boolean> {
 		const endPoint = "/Register";
+
 		this._http
 			.post<AppointmentModel>(this._apiUrl + endPoint, scheduling, {
 				observe: "response",

@@ -30,8 +30,30 @@ import {
 export class FormDatePickerComponent implements ControlValueAccessor {
 	@Input() defaultMessage = "Escolha uma data";
 	@Input() formControlName = "";
+	@Input() isPastPrevent = false;
+	@Input() isFuturePrevent = false;
 
-	private _onChange: (value: Date) => void = () => {
+	pastPreventFilter = (date: Date | null): boolean => {
+		if (!date) return false;
+		const today = new Date();
+		today.setHours(0, 0, 0, 0);
+		date.setHours(0, 0, 0, 0);
+		return date >= today;
+	};
+
+	futurePreventFilter = (date: Date | null): boolean => {
+		if (!date) return false;
+		const today = new Date();
+		today.setHours(0, 0, 0, 0);
+		date.setHours(0, 0, 0, 0);
+		return date <= today;
+	};
+
+	noFilter = (): boolean => {
+		return true;
+	};
+
+	private _onChange: (value: Date | null) => void = () => {
 		return;
 	};
 	private _onTouched: () => void = () => {
@@ -45,7 +67,7 @@ export class FormDatePickerComponent implements ControlValueAccessor {
 
 	registerOnChange(fn: (value: Date | null) => void): void {
 		this._onChange = fn;
-		this.control.valueChanges.subscribe(this._onChange);
+		this.control.valueChanges.subscribe(value => this._onChange(value));
 	}
 
 	registerOnTouched(fn: () => void): void {
@@ -54,9 +76,9 @@ export class FormDatePickerComponent implements ControlValueAccessor {
 
 	setDisabledState(isDisabled: boolean): void {
 		if (isDisabled) {
-			this.control.enable();
-		} else {
 			this.control.disable();
+		} else {
+			this.control.enable();
 		}
 	}
 }
