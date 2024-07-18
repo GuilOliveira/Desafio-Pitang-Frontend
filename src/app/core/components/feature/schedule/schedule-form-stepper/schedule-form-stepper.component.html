@@ -6,13 +6,14 @@
 				<div>
 					<mat-form-field>
 						<mat-label>Nome do Paciente</mat-label>
-						<input matInput placeholder="Nome do Paciente" formControlName="name" required />
+						<input matInput placeholder="Nome do Paciente" formControlName="name" pattern="[A-Za-z ]*" required />
 					</mat-form-field>
 				</div>
 				<div>
 					<app-form-date-picker
 						[defaultMessage]="'Data de nascimento'"
 						formControlName="birthDate"
+						[isFuturePrevent]="true"
 						[formGroup]="firstStepGroup"
 					/>
 				</div>
@@ -29,6 +30,7 @@
 					<app-form-date-picker
 						[defaultMessage]="'Data da consulta'"
 						formControlName="scheduleDate"
+						[isPastPrevent]="true"
 						[formGroup]="secondStepGroup"
 					/>
 				</div>

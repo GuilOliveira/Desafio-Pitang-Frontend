@@ -18,7 +18,6 @@ export class ModalErrorMessageComponent {
 	data = inject(MAT_DIALOG_DATA);
 
 	close(): void {
-		console.log(this.data.messages);
 		this.dialogRef.close();
 	}
 }
