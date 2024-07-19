@@ -1,0 +1,31 @@
+<div class="container">
+	<div class="welcome-message">
+		@if(isLogged){
+		<h3>Bem vindo {{ name }}!</h3>
+		}@else {
+		<div>
+			<h3>Bem vindo!</h3>
+			<p>Para fazer seu agendamento cadastre-se ou entre!</p>
+		</div>
+		}
+	</div>
+
+	<div class="auth-links">
+		<p>
+			Feito por
+			<a href="https://github.com/GuilOliveira" target="_blank" class="fab fa-github github-link"
+				>Guilherme Oliveira</a
+			>
+		</p>
+		<p>
+			<a href="https://github.com/GuilOliveira/Desafio-Pitang-Backend" target="_blank" class="backend-link">
+				<i class="fab fa-github"></i> Backend
+			</a>
+		</p>
+		<p>
+			<a href="https://github.com/GuilOliveira/Desafio-Pitang-Frontend" target="_blank" class="frontend-link">
+				<i class="fab fa-github"></i> Frontend
+			</a>
+		</p>
+	</div>
+</div>
