@@ -1,4 +1,4 @@
-import { HttpClient, HttpResponse } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { UserRegistrationModel } from "../../models/user/user-registration-model";
 import { take, tap } from "rxjs";
@@ -15,18 +15,16 @@ export class RegisterService {
 
 	register(userModel: UserRegistrationModel): void {
 		this._http
-			.post<HttpResponse<null>>(this.url, userModel)
+			.post(this.url, userModel)
 			.pipe(
 				take(1),
 				tap({
-					next: (response: HttpResponse<null>) => {
-						if (response.status == 200) {
-							this._modalService.showNotification(
-								"Usuário cadastrado com sucesso!",
-								"O usuário foi cadastrado com sucesso!",
-								false
-							);
-						}
+					next: () => {
+						this._modalService.showNotification(
+							"Usuário cadastrado com sucesso!",
+							"O usuário foi cadastrado com sucesso!",
+							false
+						);
 					},
 					error: error => {
 						if (error.status == 400) {

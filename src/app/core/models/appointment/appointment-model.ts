@@ -4,4 +4,5 @@ export interface AppointmentModel {
 	time: string;
 	status: string;
 	name: string;
+	userId: number;
 }

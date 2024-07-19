@@ -23,8 +23,13 @@
 				<app-appointment-status-selector
 					[appointmentStatus]="element.status"
 					[appointmentId]="element.id"
+					[creatorId]="element.userId"
 				></app-appointment-status-selector>
-				<app-delete-appointment-button [id]="element.id" class="delete-button"></app-delete-appointment-button>
+				<app-delete-appointment-button
+					[id]="element.id"
+					[creatorId]="element.userId"
+					class="delete-button"
+				></app-delete-appointment-button>
 			</div>
 		</td>
 	</ng-container>
