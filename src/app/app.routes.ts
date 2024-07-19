@@ -4,6 +4,7 @@ import { AppointmentSearchComponent } from "./pages/appointment-search/appointme
 import { AppointmentScheduleComponent } from "./pages/appointment-schedule/appointment-schedule.component";
 import { authGuard } from "./core/guards/auth.guard";
 import { AuthenticationComponent } from "./pages/authentication/authentication.component";
+import { loggedGuard } from "./core/guards/logged.guard";
 
 export const routes: Routes = [
 	{
@@ -22,6 +23,7 @@ export const routes: Routes = [
 	{
 		path: "autenticar",
 		component: AuthenticationComponent,
+		canActivate: [loggedGuard],
 	},
 	{
 		path: "**",

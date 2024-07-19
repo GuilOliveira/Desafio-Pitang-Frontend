@@ -3,6 +3,7 @@ import { inject } from "@angular/core";
 import { LoginService } from "../services/auth/login.service";
 import { switchMap, catchError, throwError } from "rxjs";
 import { TokenService } from "../services/auth/token.service";
+import { ModalNotificationService } from "../services/notification/modal-notification.service";
 
 const urlIgnore = [
 	"/api/Authentication/Login",
@@ -21,7 +22,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
 	const _loginService = inject(LoginService);
 	const _tokenService = inject(TokenService);
-	_tokenService.decodeToken();
+	const _modalService = inject(ModalNotificationService);
 	const bearer = "Bearer " + _tokenService.getToken();
 	const newReq = req.clone({
 		setHeaders: {
@@ -44,6 +45,12 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 					}),
 					catchError(refreshError => {
 						_loginService.logout();
+						_modalService.closeAllModals();
+						_modalService.showNotification(
+							"Sessão expirada!",
+							"Sua sessão expirou, faça login novamente para poder continuar",
+							true
+						);
 						return throwError(() => refreshError);
 					})
 				);
