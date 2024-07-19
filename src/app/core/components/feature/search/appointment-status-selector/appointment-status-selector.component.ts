@@ -4,6 +4,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { AppointmentService } from "../../../../services/feature/appointment.service";
 import { AppointmentStatusUpdateModel } from "../../../../models/appointment/appointment-status-update-model";
 import { take } from "rxjs";
+import { TokenService } from "../../../../services/auth/token.service";
 
 @Component({
 	selector: "app-appointment-status-selector",
@@ -14,12 +15,18 @@ import { take } from "rxjs";
 })
 export class AppointmentStatusSelectorComponent implements OnInit {
 	private _appointmentService = inject(AppointmentService);
+	private _tokenService = inject(TokenService);
 
 	@Input() appointmentStatus!: string;
 	@Input() appointmentId!: number;
+	@Input() creatorId!: number;
 	lastStatus!: string;
+	userId!: number;
+	userRole!: string;
 
 	ngOnInit(): void {
+		this.userId = this._tokenService.getTokenId()!;
+		this.userRole = this._tokenService.getTokenRole()!;
 		this.lastStatus = this.appointmentStatus;
 	}
 
