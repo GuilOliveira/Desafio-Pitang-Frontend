@@ -14,7 +14,7 @@ const urlIgnore = [
 ];
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
-	const shouldIgnore = urlIgnore.some(url => req.url.includes(url));
+	const shouldIgnore = urlIgnore.some(ignoreUrl => req.url.includes(ignoreUrl));
 
 	if (shouldIgnore) {
 		return next(req);

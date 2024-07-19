@@ -83,6 +83,10 @@ export class AppointmentService {
 		return this.updateResult$.asObservable();
 	}
 
+	public getAppointmentsByUser(): Observable<AppointmentModel[][]> {
+		return this._http.get<AppointmentModel[][]>(this._apiUrl + "/GetByUser");
+	}
+
 	public deleteAppointment(id: number): void {
 		const endPoint = "/Delete";
 
