@@ -8,6 +8,7 @@ import { ModalNotificationService } from "../notification/modal-notification.ser
 import { AppointmentIconNotificationService } from "../cache/appointment-icon-notification.service";
 import { SchedulingFormCacheService } from "../cache/scheduling-form-cache.service";
 import { ErrorResponseModel } from "../../models/error/error-response-model";
+import { AppointmentService } from "./appointment.service";
 
 @Injectable({
 	providedIn: "root",
@@ -17,6 +18,7 @@ export class SchedulingService {
 	private _modalService = inject(ModalNotificationService);
 	private _iconNotification = inject(AppointmentIconNotificationService);
 	private _formCacheService = inject(SchedulingFormCacheService);
+	private _appointmentService = inject(AppointmentService);
 	private _apiUrl = "/api/Scheduling";
 
 	private postResult$ = new Subject<boolean>();
@@ -41,6 +43,7 @@ export class SchedulingService {
 								false
 							);
 							this._iconNotification.add();
+							this._appointmentService.ShouldUpdateAppointments();
 						}
 					},
 					error: error => {
@@ -53,6 +56,7 @@ export class SchedulingService {
 								"Houve um erro ao tentar agendar sua consulta.",
 								true
 							);
+						this._appointmentService.ShouldUpdateAppointments();
 						this.postResult$.next(false);
 					},
 				})
