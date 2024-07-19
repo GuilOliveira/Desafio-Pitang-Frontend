@@ -1,7 +1,7 @@
 import { Component, inject, Input, OnInit, OnDestroy } from "@angular/core";
 import { MatExpansionModule } from "@angular/material/expansion";
 import { DatePipe } from "@angular/common";
-import { AppointmentModel } from "../../../../models/appointment-model";
+import { AppointmentModel } from "../../../../models/appointment/appointment-model";
 import { AppointmentsTableComponent } from "../appointment-table/appointments-table.component";
 import { AppointmentService } from "../../../../services/feature/appointment.service";
 import { Subscription } from "rxjs";

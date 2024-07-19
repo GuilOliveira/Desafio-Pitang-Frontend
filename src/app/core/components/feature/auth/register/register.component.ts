@@ -1,10 +1,11 @@
 import { CommonModule } from "@angular/common";
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { FormBuilder, FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatFormFieldModule, MatLabel } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatSelectModule } from "@angular/material/select";
+import { RegisterService } from "../../../../services/auth/register.service";
 
 @Component({
 	selector: "app-register",
@@ -23,6 +24,8 @@ import { MatSelectModule } from "@angular/material/select";
 	styleUrl: "./register.component.scss",
 })
 export class RegisterComponent {
+	private _registerService = inject(RegisterService);
+
 	registerForm!: FormGroup;
 
 	constructor(private _formBuilder: FormBuilder) {
@@ -49,10 +52,6 @@ export class RegisterComponent {
 	}
 
 	onSubmit() {
-		if (this.registerForm.valid) {
-			console.log("Form Submitted", this.registerForm.value);
-		} else {
-			console.log("Form is invalid");
-		}
+		this._registerService.register(this.registerForm.value);
 	}
 }

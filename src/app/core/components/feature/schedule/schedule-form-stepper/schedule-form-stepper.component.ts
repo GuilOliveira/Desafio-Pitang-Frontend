@@ -7,7 +7,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatSelectModule } from "@angular/material/select";
 import { FormDatePickerComponent } from "../../../shared/form-date-picker/form-date-picker.component";
 import { SchedulingService } from "../../../../services/feature/scheduling.service";
-import { ScheduleModel } from "../../../../models/schedule-model";
+import { ScheduleModel } from "../../../../models/schedule/schedule-model";
 import { formatDate } from "@angular/common";
 import { take } from "rxjs";
 

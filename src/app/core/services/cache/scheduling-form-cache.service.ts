@@ -1,6 +1,6 @@
 import { inject, Injectable } from "@angular/core";
 import { LocalStorageService } from "../core/local-storage.service";
-import { getEmptyScheduleForm, ScheduleFormModel } from "../../models/schedule-form-model";
+import { getEmptyScheduleForm, ScheduleFormModel } from "../../models/schedule/schedule-form-model";
 
 @Injectable({
 	providedIn: "root",
