@@ -30,9 +30,14 @@ export class LoginComponent {
 
 	constructor(private _formBuilder: FormBuilder) {
 		this.loginForm = this._formBuilder.group({
-			email: ["", [Validators.required, Validators.email]],
+			email: ["", [Validators.required, this.emailValidator]],
 			password: ["", [Validators.required, Validators.minLength(6)]],
 		});
+	}
+
+	emailValidator(control: FormControl): Record<string, boolean> | null {
+		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		return emailRegex.test(control.value) ? null : { invalidEmail: true };
 	}
 
 	getFormControl(controlName: string) {

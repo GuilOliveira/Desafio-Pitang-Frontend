@@ -6,7 +6,18 @@
 				<div>
 					<mat-form-field>
 						<mat-label>Nome do Paciente</mat-label>
-						<input matInput placeholder="Nome do Paciente" formControlName="name" pattern="[A-Za-z ]*" required />
+						<input matInput placeholder="Nome do Paciente" formControlName="name" required />
+						<div
+							*ngIf="
+								firstStepGroup.get('name')?.invalid &&
+								(firstStepGroup.get('name')?.dirty || firstStepGroup.get('name')?.touched)
+							"
+						>
+							<mat-error *ngIf="firstStepGroup.get('name')?.hasError('required')">O Nome é obrigatório.</mat-error>
+							<mat-error *ngIf="firstStepGroup.get('name')?.hasError('containsNumber')"
+								>O Nome não pode conter números.</mat-error
+							>
+						</div>
 					</mat-form-field>
 				</div>
 				<div>
