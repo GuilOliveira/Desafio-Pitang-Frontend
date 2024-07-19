@@ -61,4 +61,13 @@ export class TokenService {
 		}
 		return null;
 	}
+
+	getTokenName(): string | null {
+		const decodedToken = this.decodeToken();
+
+		if (decodedToken) {
+			return decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]!;
+		}
+		return null;
+	}
 }
