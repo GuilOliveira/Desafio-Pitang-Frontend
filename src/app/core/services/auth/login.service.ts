@@ -43,11 +43,7 @@ export class LoginService {
 							const errorResponse = error.error as ErrorResponseModel;
 							this._modalService.showErrorMessages("Ocorreu um erro!", errorResponse.Messages);
 						} else
-							this._modalService.showNotification(
-								"Ocorreu um erro!",
-								"Houve um erro ao tentar cadastrar o usuário.",
-								true
-							);
+							this._modalService.showNotification("Ocorreu um erro!", "Houve um erro ao tentar entrar.", true);
 					},
 				})
 			)

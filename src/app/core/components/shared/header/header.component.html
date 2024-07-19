@@ -1,10 +1,10 @@
 <mat-toolbar class="app-header">
-	<span class="common text-button heavy" routerLink="/home" RouterLinkActive="active"> Desafio Pitang </span>
+	<span class="common text-button heavy" routerLink="/" RouterLinkActive="active"> Desafio Pitang </span>
 	<span class="common text-button" routerLink="/consulta" RouterLinkActive="active"> Consulta </span>
 
 	@if(isLogged){
 	<span class="common text-button" routerLink="/agendamento" RouterLinkActive="active"> Agendamento </span>
-	<app-appointment-icon routerLink="/consultas-usuario" RouterLinkActive="active" />
+	<app-appointment-icon routerLink="/consultasUsuario" RouterLinkActive="active" />
 	<span class="example-spacer"></span>
 	<span
 		class="common text-button"

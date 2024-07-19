@@ -27,9 +27,9 @@ export const routes: Routes = [
 		canActivate: [loggedGuard],
 	},
 	{
-		path: "consultas-usuario",
+		path: "consultasUsuario",
 		component: AppointmentSearchUserComponent,
-		canActivate: [loggedGuard],
+		canActivate: [authGuard],
 	},
 	{
 		path: "**",

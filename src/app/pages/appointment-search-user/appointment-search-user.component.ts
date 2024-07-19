@@ -1,10 +1,10 @@
 import { Component } from "@angular/core";
-import { AllAppointmentsContainerComponent } from "../../core/components/feature/search/all-appointments-container/all-appointments-container.component";
+import { UserAppointmentsContainerComponent } from "../../core/components/feature/search/user-appointments-container/user-appointments-container.component";
 
 @Component({
 	selector: "app-appointment-search-user",
 	standalone: true,
-	imports: [AllAppointmentsContainerComponent],
+	imports: [UserAppointmentsContainerComponent],
 	templateUrl: "./appointment-search-user.component.html",
 	styleUrl: "./appointment-search-user.component.scss",
 })
