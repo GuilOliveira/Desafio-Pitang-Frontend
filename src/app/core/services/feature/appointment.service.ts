@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable, inject } from "@angular/core";
-import { Observable, Subject, take, tap } from "rxjs";
+import { BehaviorSubject, catchError, Observable, of, Subject, take, tap } from "rxjs";
 import { AppointmentModel } from "../../models/appointment/appointment-model";
 import { AppointmentStatusUpdateModel } from "../../models/appointment/appointment-status-update-model";
 import { formatDate } from "@angular/common";
@@ -17,11 +17,34 @@ export class AppointmentService {
 
 	private updateResult$ = new Subject<boolean>();
 	private deletedAppoinment = new Subject<number>();
+	private cachedAppointments = new BehaviorSubject<AppointmentModel[][]>([[]]);
+	private mustUpdateAppointments = true;
 	deletedAppointment$ = this.deletedAppoinment.asObservable();
 
+	private updateCachedAppointments(newAppointments: Observable<AppointmentModel[][]>): void {
+		newAppointments
+			.pipe(
+				take(1),
+				catchError(() => {
+					this.ShouldUpdateAppointments();
+					return of(this.cachedAppointments.getValue());
+				})
+			)
+			.subscribe(response => {
+				this.cachedAppointments.next(response);
+			});
+	}
+
+	public ShouldUpdateAppointments(): void {
+		this.mustUpdateAppointments = true;
+	}
+
 	public getAllAppointments(): Observable<AppointmentModel[][]> {
-		const endPoint = "/GetAll";
-		return this._http.get<AppointmentModel[][]>(this._apiUrl + endPoint);
+		if (!this.mustUpdateAppointments) return this.cachedAppointments;
+		this.mustUpdateAppointments = false;
+		const newAppointments = this._http.get<AppointmentModel[][]>(this._apiUrl + "/GetAll");
+		this.updateCachedAppointments(newAppointments);
+		return newAppointments;
 	}
 
 	public getFilteredAppointments(initialDate: Date, finalDate: Date): Observable<AppointmentModel[][]> {
@@ -45,6 +68,7 @@ export class AppointmentService {
 				tap({
 					next: (response: HttpResponse<AppointmentModel>) => {
 						if (response.status == 200) {
+							this.ShouldUpdateAppointments();
 							this._notificationService.showMessage("O status do agendamento foi mudado com sucesso.");
 							this.updateResult$.next(true);
 						}
@@ -73,6 +97,7 @@ export class AppointmentService {
 						if (response.status == 204) {
 							this.deletedAppoinment.next(id);
 							this._notificationService.showMessage("O agendamento foi excluído com sucesso.");
+							this.ShouldUpdateAppointments();
 						}
 					},
 					error: () => {
