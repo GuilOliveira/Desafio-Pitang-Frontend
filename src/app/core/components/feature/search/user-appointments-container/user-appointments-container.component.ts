@@ -22,6 +22,6 @@ export class UserAppointmentsContainerComponent implements OnInit {
 	}
 
 	loadAppointments(): void {
-		this.appointments$ = this._appointmentService.getAllAppointments();
+		this.appointments$ = this._appointmentService.getAppointmentsByUser();
 	}
 }
