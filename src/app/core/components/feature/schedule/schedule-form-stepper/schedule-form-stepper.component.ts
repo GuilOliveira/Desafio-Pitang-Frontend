@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from "@angular/core";
-import { FormBuilder, Validators, FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { FormBuilder, Validators, FormGroup, FormsModule, ReactiveFormsModule, FormControl } from "@angular/forms";
 import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatStepper, MatStepperModule } from "@angular/material/stepper";
@@ -8,7 +8,7 @@ import { MatSelectModule } from "@angular/material/select";
 import { FormDatePickerComponent } from "../../../shared/form-date-picker/form-date-picker.component";
 import { SchedulingService } from "../../../../services/feature/scheduling.service";
 import { ScheduleModel } from "../../../../models/schedule/schedule-model";
-import { formatDate } from "@angular/common";
+import { CommonModule, formatDate } from "@angular/common";
 import { take } from "rxjs";
 
 @Component({
@@ -24,6 +24,7 @@ import { take } from "rxjs";
 		MatSelectModule,
 		FormDatePickerComponent,
 		MatStepper,
+		CommonModule,
 	],
 	templateUrl: "./schedule-form-stepper.component.html",
 	styleUrls: ["./schedule-form-stepper.component.scss"],
@@ -55,7 +56,7 @@ export class ScheduleFormStepperComponent implements OnInit {
 	constructor(private _formBuilder: FormBuilder) {
 		this.scheduleFormGroup = this._formBuilder.group({
 			firstStep: this._formBuilder.group({
-				name: ["", Validators.required],
+				name: ["", [Validators.required, this.noNumbersValidator]],
 				birthDate: ["", Validators.required],
 			}),
 			secondStep: this._formBuilder.group({
@@ -86,6 +87,11 @@ export class ScheduleFormStepperComponent implements OnInit {
 
 	get secondStepGroup(): FormGroup {
 		return this.scheduleFormGroup.get("secondStep") as FormGroup;
+	}
+
+	noNumbersValidator(control: FormControl): Record<string, boolean> | null {
+		const hasNumber = /\d/.test(control.value);
+		return hasNumber ? { containsNumber: true } : null;
 	}
 
 	submitForm(stepper: MatStepper) {

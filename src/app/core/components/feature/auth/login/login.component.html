@@ -6,7 +6,7 @@
 			*ngIf="loginForm.get('email')?.invalid && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)"
 		>
 			<mat-error *ngIf="loginForm.get('email')?.hasError('required')">O Email é obrigatório.</mat-error>
-			<mat-error *ngIf="loginForm.get('email')?.hasError('email')">Email Inválido.</mat-error>
+			<mat-error *ngIf="loginForm.get('email')?.hasError('invalidEmail')">Email Inválido.</mat-error>
 		</div>
 	</mat-form-field>
 	<mat-form-field class="field">

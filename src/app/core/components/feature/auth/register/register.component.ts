@@ -30,11 +30,16 @@ export class RegisterComponent {
 
 	constructor(private _formBuilder: FormBuilder) {
 		this.registerForm = this._formBuilder.group({
-			email: ["", [Validators.required, Validators.email]],
+			email: ["", [Validators.required, this.emailValidator]],
 			name: ["", [Validators.required, this.noNumbersValidator]],
 			password: ["", [Validators.required, Validators.minLength(6)]],
 			profile: ["", [Validators.required, this.profileValidator]],
 		});
+	}
+
+	emailValidator(control: FormControl): Record<string, boolean> | null {
+		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		return emailRegex.test(control.value) ? null : { invalidEmail: true };
 	}
 
 	getFormControl(controlName: string) {
