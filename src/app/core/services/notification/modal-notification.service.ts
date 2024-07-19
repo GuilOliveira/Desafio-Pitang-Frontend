@@ -36,4 +36,8 @@ export class ModalNotificationService {
 			},
 		});
 	}
+
+	closeAllModals() {
+		this.dialog.closeAll();
+	}
 }
