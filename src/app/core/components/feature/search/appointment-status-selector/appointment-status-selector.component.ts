@@ -2,7 +2,7 @@ import { Component, inject, Input, OnInit } from "@angular/core";
 import { MatSelectModule } from "@angular/material/select";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { AppointmentService } from "../../../../services/feature/appointment.service";
-import { AppointmentStatusUpdateModel } from "../../../../models/appointment-status-update-model";
+import { AppointmentStatusUpdateModel } from "../../../../models/appointment/appointment-status-update-model";
 import { take } from "rxjs";
 
 @Component({

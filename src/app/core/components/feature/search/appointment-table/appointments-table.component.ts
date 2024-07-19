@@ -1,7 +1,7 @@
 import { Component, Input } from "@angular/core";
 import { MatTableModule } from "@angular/material/table";
 import { AppointmentStatusSelectorComponent } from "../appointment-status-selector/appointment-status-selector.component";
-import { AppointmentModel } from "../../../../models/appointment-model";
+import { AppointmentModel } from "../../../../models/appointment/appointment-model";
 import { DatePipe } from "@angular/common";
 import { DeleteAppointmentButtonComponent } from "../delete-appointment-button/delete-appointment-button.component";
 

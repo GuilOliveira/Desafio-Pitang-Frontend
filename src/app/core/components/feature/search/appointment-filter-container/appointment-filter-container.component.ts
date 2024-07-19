@@ -9,7 +9,7 @@ import { AsyncPipe } from "@angular/common";
 import { SnackbarMessageService } from "../../../../services/notification/snackbar-message.service";
 import { AppointmentService } from "../../../../services/feature/appointment.service";
 import { Observable } from "rxjs";
-import { AppointmentModel } from "../../../../models/appointment-model";
+import { AppointmentModel } from "../../../../models/appointment/appointment-model";
 import { provideNativeDateAdapter } from "@angular/material/core";
 import { AppointmentsNotFoundComponent } from "../../../shared/appointments-not-found/appointments-not-found.component";
 import { AllAppointmentsContainerComponent } from "../all-appointments-container/all-appointments-container.component";

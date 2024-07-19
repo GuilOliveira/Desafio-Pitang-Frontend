@@ -1,13 +1,13 @@
 import { HttpClient, HttpResponse } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
-import { ScheduleModel } from "../../models/schedule-model";
-import { ScheduleFormModel } from "../../models/schedule-form-model";
+import { ScheduleModel } from "../../models/schedule/schedule-model";
+import { ScheduleFormModel } from "../../models/schedule/schedule-form-model";
 import { BehaviorSubject, Observable, Subject, take, tap } from "rxjs";
-import { AppointmentModel } from "../../models/appointment-model";
+import { AppointmentModel } from "../../models/appointment/appointment-model";
 import { ModalNotificationService } from "../notification/modal-notification.service";
 import { AppointmentIconNotificationService } from "../cache/appointment-icon-notification.service";
 import { SchedulingFormCacheService } from "../cache/scheduling-form-cache.service";
-import { ErrorResponseModel } from "../../models/error-response-model";
+import { ErrorResponseModel } from "../../models/error/error-response-model";
 
 @Injectable({
 	providedIn: "root",
