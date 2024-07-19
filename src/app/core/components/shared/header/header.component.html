@@ -1,0 +1,24 @@
+<mat-toolbar class="app-header">
+	<span class="common text-button heavy" routerLink="/" RouterLinkActive="active"> Desafio Pitang </span>
+	<span class="common text-button" routerLink="/consulta" RouterLinkActive="active"> Consulta </span>
+
+	@if(isLogged){
+	<span class="common text-button" routerLink="/agendamento" RouterLinkActive="active"> Agendamento </span>
+	<app-appointment-icon routerLink="/consultasUsuario" RouterLinkActive="active" />
+	<span class="example-spacer"></span>
+	<span
+		class="common text-button"
+		tabindex="0"
+		(click)="logout()"
+		(keydown.enter)="logout()"
+		routerLink="/home"
+		RouterLinkActive="active"
+	>
+		Sair
+	</span>
+
+	}@else{
+	<span class="example-spacer"></span>
+	<span class="common login" routerLink="/autenticar" RouterLinkActive="active"> Entrar </span>
+	}
+</mat-toolbar>

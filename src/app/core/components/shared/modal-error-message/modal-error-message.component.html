@@ -1,0 +1,15 @@
+<h2 class="error" mat-dialog-title>
+	<mat-icon class="erroIcon" aria-hidden="false" aria-label="Example home icon" fontIcon="priority_high" />
+	{{ data.title }}
+</h2>
+<ul>
+	@for (message of data.messages; track $index) {
+	<li>
+		<mat-dialog-content>{{ message }}</mat-dialog-content>
+	</li>
+	}
+</ul>
+
+<mat-dialog-actions>
+	<button mat-button mat-dialog-close (click)="close()">Ok</button>
+</mat-dialog-actions>

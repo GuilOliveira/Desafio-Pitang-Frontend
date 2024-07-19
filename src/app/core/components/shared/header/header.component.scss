@@ -1,0 +1,43 @@
+.example-spacer {
+	flex: 1 1 auto;
+}
+
+.app-header {
+	background-color: ghostwhite;
+}
+
+.common {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0px 15px;
+	margin: 10px;
+	cursor: pointer;
+	border: none;
+	transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.text-button {
+	min-width: 100px;
+	height: 100%;
+}
+
+.text-button:hover {
+	background-color: #e0eaff;
+}
+
+.login {
+	color: #e0eaff;
+	min-width: 70px;
+	height: 65%;
+	background-color: #1d67b5;
+	border-radius: 15px;
+}
+
+.login:hover {
+	background-color: rgb(36, 74, 155); /* Cor ao passar o mouse */
+}
+
+.heavy {
+	font-weight: 500;
+}

@@ -1,0 +1,13 @@
+<mat-accordion>
+	@for (appointmentList of allAppointments; track appointmentList[0].id) {
+	<mat-expansion-panel>
+		<mat-expansion-panel-header>
+			<mat-panel-title>
+				{{ appointmentList[0].date | date : "dd/MM/YYYY" }}
+			</mat-panel-title>
+			<mat-panel-description> {{ appointmentList.length }}/20 agendamentos </mat-panel-description>
+		</mat-expansion-panel-header>
+		<app-appointments-table [appointments]="appointmentList" />
+	</mat-expansion-panel>
+	}
+</mat-accordion>

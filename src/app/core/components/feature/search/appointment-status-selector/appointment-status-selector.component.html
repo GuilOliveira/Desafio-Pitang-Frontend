@@ -1,0 +1,12 @@
+@if(userRole==="admin"|| userId===creatorId){
+<mat-form-field>
+	<mat-select [(value)]="appointmentStatus" (selectionChange)="onStatusChange()">
+		<mat-option value="Waiting">Em espera</mat-option>
+		<mat-option value="Accomplished">Finalizado</mat-option>
+	</mat-select>
+</mat-form-field>
+}@else { @if(appointmentStatus==="Accomplished"){
+<span>Finalizado</span>
+}@else {
+<span>Em espera</span>
+} }

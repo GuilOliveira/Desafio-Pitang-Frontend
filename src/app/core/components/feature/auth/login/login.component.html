@@ -1,0 +1,29 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="container">
+	<mat-form-field class="field">
+		<mat-label for="email">Email</mat-label>
+		<input matInput id="email" formControlName="email" type="email" />
+		<div
+			*ngIf="loginForm.get('email')?.invalid && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)"
+		>
+			<mat-error *ngIf="loginForm.get('email')?.hasError('required')">O Email é obrigatório.</mat-error>
+			<mat-error *ngIf="loginForm.get('email')?.hasError('invalidEmail')">Email Inválido.</mat-error>
+		</div>
+	</mat-form-field>
+	<mat-form-field class="field">
+		<mat-label for="password">Senha</mat-label>
+		<input matInput id="password" formControlName="password" type="password" />
+		<div
+			*ngIf="
+				loginForm.get('password')?.invalid &&
+				(loginForm.get('password')?.dirty || loginForm.get('password')?.touched)
+			"
+		>
+			<mat-error *ngIf="loginForm.get('password')?.hasError('required')"> A Senha é obrigatória. </mat-error>
+			<mat-error *ngIf="loginForm.get('password')?.hasError('minlength')">
+				A Senha deve ter pelo menos 6 caracteres.
+			</mat-error>
+		</div>
+	</mat-form-field>
+
+	<button mat-raised-button type="submit" [disabled]="loginForm.invalid">Entrar</button>
+</form>
