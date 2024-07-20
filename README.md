@@ -7,7 +7,6 @@ O **Desafio Pitang Frontend** é o frontend de um sistema que desenvolvi para o 
 ## Funções de destaque:
 
 - Design consistente com o Angular Material e o uso de SCSS.
-- Responsabilidades bem divididas graças a arquitetura robusta do projeto.
 - Validações nos campos que o usuário precisa preencher algum dado, para guia-lo e evitar erros.
 - Validações customizadas para atender as regras de negócio do projeto.
 - Notificações com Modais para chamar a atenção do usuário, e Snackbars para notificações mais simples.
